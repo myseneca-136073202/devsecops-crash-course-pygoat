@@ -8,31 +8,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      
-name: Checkout Repo
-      uses: actions/checkout@v3,
+      - name: Checkout Repo
+        uses: actions/checkout@v3
 
-      
-name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9',
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-      
-name: Install Dependencies
-      run: |
-        pip install -r requirements.txt
-        pip install bandit,
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install bandit
 
-      
-name: Run Bandit
-      run: |
-        bandit -r pygoat -f json -o bandit_report.json
-      continue-on-error: true,
+      - name: Run Bandit
+        run: |
+          bandit -r pygoat -f json -o bandit_report.json
+        continue-on-error: true
 
-      
-name: Upload Bandit Report
-      uses: actions/upload-artifact@v4
-      with:
-        name: bandit-report
-        path: bandit_report.json
+      - name: Upload Bandit Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: bandit-report
+          path: bandit_report.json
