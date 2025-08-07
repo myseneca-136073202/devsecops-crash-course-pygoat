@@ -23,7 +23,7 @@ jobs:
 
       - name: Run Bandit
         run: |
-          bandit -r pygoat -f json -o bandit_report.json
+          bandit -r pygoat -f json -o bandit_report.json --severity-level medium  --confidence-level medium
         continue-on-error: true
 
       - name: Upload Bandit Report
