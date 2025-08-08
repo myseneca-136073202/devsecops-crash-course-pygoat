@@ -62,8 +62,8 @@ jobs:
           image: ${{ secrets.DOCKER_USERNAME }}/pygoat:test
           only-severities: critical,high
           ignore-unfixed: true
-          sarif-file: sarif
-          output: scout-results.sarif
+          format: sarif
+          sarif-file: scout-results.sarif
 
       - name: Upload Docker Scout Report
         uses: actions/upload-artifact@v4
